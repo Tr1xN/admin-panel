@@ -18,14 +18,6 @@ mongoose.connect('mongodb://localhost:27017/wowtort')
 const AdminBroOptions = {
     resources: [{
         resource: cakeModel,
-        options: { properties: { mimeType: { /** ... **/ } }},
-        features: [uploadFeature({
-          provider: { local: { bucket: 'public' } },
-          properties: {
-            key: 'fileUrl',
-            mimeType: 'mimeType'
-          },
-        })]
       }]
 }
 const adminBro = new AdminBro(AdminBroOptions)
