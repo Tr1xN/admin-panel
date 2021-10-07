@@ -17,6 +17,7 @@ const baseModel = require ('./src/models/base.model.js')
 
 mongoose.connect('mongodb://localhost:27017/wowtort')
 const AdminBroOptions = {
+<<<<<<< HEAD
   resources: [
     { resource: cakeModel, options: {
         listProperties: ['name', 'price', 'category'],
@@ -59,6 +60,11 @@ const AdminBroOptions = {
     companyName: 'Wow Tort',
     softwareBrothers: false,
   },
+=======
+    resources: [{
+        resource: cakeModel,
+      }]
+>>>>>>> 8e9d6f42007616c9a4d41941004fc953d3408b46
 }
 const adminBro = new AdminBro(AdminBroOptions)
 
