@@ -17,9 +17,56 @@ const baseModel = require ('./src/models/base.model.js')
 
 mongoose.connect('mongodb://localhost:27017/wowtort')
 const AdminBroOptions = {
-<<<<<<< HEAD
   resources: [
-    { resource: cakeModel, options: {
+    { 
+      resource: userModel, options: {
+        listProperties: ['firstName', '_id', 'phoneNumber'],
+        properties :{
+          firstName: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+          },
+          _id: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          phoneNumber: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+        }
+      },
+    },
+    {
+      resource: orderModel, options: {
+        listProperties: ['cake', 'price', 'weight', 'deliveryPoint', 'date', 'base', 'userID'],
+        properties :{
+          _id: {
+            isVisible: { list: false, filter: false, show: false, edit: false },
+          },
+          cake: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          price: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          weight: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          deliveryPoint: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          date: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          base: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+          userID: {
+            isVisible: { list: true, filter: true, show: true, edit: false },
+          },
+        }
+      },
+    },
+    {
+      resource: cakeModel, options: {
         listProperties: ['name', 'price', 'category'],
         properties :{
           _id: {
@@ -53,6 +100,14 @@ const AdminBroOptions = {
         price: 'Ціна',
         source: 'Посилання на зображення торту',
         category: 'Категорія',
+        phoneNumber: 'Номер телефону',
+        _id: 'ID',
+        cake: 'Торт',
+        weight: 'Вага',
+        deliveryPoint: 'Точка вивезення',
+        date: 'Дата',
+        base: 'Основа',
+        firstName: 'Ім’я'
       },
     }
   },
@@ -60,11 +115,6 @@ const AdminBroOptions = {
     companyName: 'Wow Tort',
     softwareBrothers: false,
   },
-=======
-    resources: [{
-        resource: cakeModel,
-      }]
->>>>>>> 8e9d6f42007616c9a4d41941004fc953d3408b46
 }
 const adminBro = new AdminBro(AdminBroOptions)
 
