@@ -13,20 +13,52 @@ AdminBro.registerAdapter(AdminBroMongoose)
 const orderModel = require ('./src/models/order.model.js')
 const userModel = require ('./src/models/user.model.js')
 const cakeModel = require ('./src/models/cake.model.js')
+const baseModel = require ('./src/models/base.model.js')
 
 mongoose.connect('mongodb://localhost:27017/wowtort')
 const AdminBroOptions = {
-    resources: [{
-        resource: cakeModel,
-        options: { properties: { mimeType: { /** ... **/ } }},
-        features: [uploadFeature({
-          provider: { local: { bucket: 'public' } },
-          properties: {
-            key: 'fileUrl',
-            mimeType: 'mimeType'
+  resources: [
+    { resource: cakeModel, options: {
+        listProperties: ['name', 'price', 'category'],
+        properties :{
+          _id: {
+            isVisible: { list: false, filter: false, show: false, edit: false },
           },
-        })]
-      }]
+          category : {
+            availableValues: [{value: 'Святковий', label: 'Святковий'}, {value: 'Дитячий', label: 'Дитячий'}, {value: 'Весільний', label: 'Весільний'},]
+          }
+        }
+      }
+    },
+  ],
+  locale: {
+    language: 'ua',
+    translations: {
+      actions: {
+        new: 'Створити новий',
+        edit: 'Редагувати',
+        show: 'Детальніше',
+        delete: 'Видалити',
+        list: 'Список',
+        search: 'Поиск',
+        bulkDelete: 'Видалити',
+        filter: 'Фільтр'
+      },
+      buttons: {
+        save: 'Зберегти',
+      },
+      properties: {
+        name: 'Назва',
+        price: 'Ціна',
+        source: 'Посилання на зображення торту',
+        category: 'Категорія',
+      },
+    }
+  },
+  branding: {
+    companyName: 'Wow Tort',
+    softwareBrothers: false,
+  },
 }
 const adminBro = new AdminBro(AdminBroOptions)
 
