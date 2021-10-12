@@ -2,6 +2,9 @@ const AdminBro = require('admin-bro')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 const AdminBroExpress = require('@admin-bro/express')
 const uploadFeature = require('@admin-bro/upload')
+const passwordsFeature = require('@admin-bro/passwords')
+const bcrypt = require('bcrypt')
+
 
 const mongoose = require('mongoose')
 const express = require('express')
@@ -12,6 +15,7 @@ AdminBro.registerAdapter(AdminBroMongoose)
 
 const orderModel = require ('./src/models/order.model.js')
 const userModel = require ('./src/models/user.model.js')
+const adminModel = require ('./src/models/admin.model.js')
 const cakeModel = require ('./src/models/cake.model.js')
 const baseModel = require ('./src/models/base.model.js')
 
@@ -118,7 +122,18 @@ const AdminBroOptions = {
 }
 const adminBro = new AdminBro(AdminBroOptions)
 
-const router = AdminBroExpress.buildRouter(adminBro)
+const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
+  authenticate: async (email, password) => {
+    const admins = await adminModel.findOne({ email })
+      if (admins) {
+        if (password === admins.password) {
+          return admins
+        }
+      }
+    return false
+  },
+  cookiePassword: 'session Key',
+})
 
 app.use(adminBro.options.rootPath, router)
 app.listen(8080, () => console.log('AdminBro is under localhost:8080/admin'))
