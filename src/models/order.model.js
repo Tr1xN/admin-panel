@@ -25,8 +25,8 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    userID:{
-        type: Number,
+    phoneNumber:{
+        type: String,
         required: true
     }
 })

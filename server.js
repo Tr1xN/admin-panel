@@ -1,10 +1,6 @@
 const AdminBro = require('admin-bro')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 const AdminBroExpress = require('@admin-bro/express')
-const uploadFeature = require('@admin-bro/upload')
-const passwordsFeature = require('@admin-bro/passwords')
-const bcrypt = require('bcrypt')
-
 
 const mongoose = require('mongoose')
 const express = require('express')
@@ -18,8 +14,9 @@ const userModel = require ('./src/models/user.model.js')
 const adminModel = require ('./src/models/admin.model.js')
 const cakeModel = require ('./src/models/cake.model.js')
 const baseModel = require ('./src/models/base.model.js')
+const config = require ('./config.json')
 
-mongoose.connect('mongodb://localhost:27017/wowtort')
+mongoose.connect(config.mongoURI)
 const AdminBroOptions = {
   resources: [
     { 
@@ -27,7 +24,7 @@ const AdminBroOptions = {
         listProperties: ['firstName', '_id', 'phoneNumber'],
         properties :{
           firstName: {
-            isVisible: { list: true, filter: true, show: true, edit: true },
+            isVisible: { list: true, filter: true, show: true, edit: false },
           },
           _id: {
             isVisible: { list: true, filter: true, show: true, edit: false },
@@ -40,7 +37,7 @@ const AdminBroOptions = {
     },
     {
       resource: orderModel, options: {
-        listProperties: ['cake', 'price', 'weight', 'deliveryPoint', 'date', 'base', 'userID'],
+        listProperties: ['cake', 'price', 'weight', 'deliveryPoint', 'date', 'base', 'phoneNumber'],
         properties :{
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
@@ -63,7 +60,7 @@ const AdminBroOptions = {
           base: {
             isVisible: { list: true, filter: true, show: true, edit: false },
           },
-          userID: {
+          phoneNumber: {
             isVisible: { list: true, filter: true, show: true, edit: false },
           },
         }
@@ -71,7 +68,7 @@ const AdminBroOptions = {
     },
     {
       resource: cakeModel, options: {
-        listProperties: ['name', 'price', 'category'],
+        listProperties: ['name', 'price', 'category', 'minWeight'],
         properties :{
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
@@ -82,6 +79,19 @@ const AdminBroOptions = {
         }
       }
     },
+    {
+      resource: baseModel, options: {
+        listProperties: ['name'],
+        properties :{
+          _id: {
+            isVisible: { list: false, filter: false, show: false, edit: false },
+          },
+          name: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+          },
+        }
+      },
+    }
   ],
   locale: {
     language: 'ua',
@@ -111,7 +121,8 @@ const AdminBroOptions = {
         deliveryPoint: 'Точка вивезення',
         date: 'Дата',
         base: 'Основа',
-        firstName: 'Ім’я'
+        firstName: 'Ім’я',
+        phoneNumber: 'Номер користувача'
       },
     }
   },
@@ -136,4 +147,4 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 })
 
 app.use(adminBro.options.rootPath, router)
-app.listen(8080, () => console.log('AdminBro is under localhost:8080/admin'))
+app.listen(config.port, () => console.log('AdminBro is under localhost:8080/admin'))
