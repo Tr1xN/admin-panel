@@ -122,7 +122,8 @@ const AdminBroOptions = {
         date: 'Дата',
         base: 'Основа',
         firstName: 'Ім’я',
-        phoneNumber: 'Номер користувача'
+        phoneNumber: 'Номер користувача',
+        minWeight: 'Мінімальна вага'
       },
     }
   },
