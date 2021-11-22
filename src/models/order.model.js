@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const orderSchema = new mongoose.Schema({
     cake:{
@@ -32,4 +32,4 @@ const orderSchema = new mongoose.Schema({
 })
 
 let orderModel = mongoose.model('orders', orderSchema)
-module.exports = orderModel
+export default orderModel

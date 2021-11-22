@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const baseSchema = new mongoose.Schema({
     name:{
@@ -8,4 +8,4 @@ const baseSchema = new mongoose.Schema({
 })
 
 let baseModel = mongoose.model('bases', baseSchema)
-module.exports = baseModel
+export default baseModel

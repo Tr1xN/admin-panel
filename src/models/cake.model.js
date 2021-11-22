@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const cakeSchema = new mongoose.Schema({
     name:{
@@ -19,4 +19,4 @@ const cakeSchema = new mongoose.Schema({
 })
 
 let cakeModel = mongoose.model('cakes', cakeSchema)
-module.exports = cakeModel
+export default cakeModel

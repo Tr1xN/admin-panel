@@ -1,20 +1,20 @@
-const AdminBro = require('admin-bro')
-const AdminBroMongoose = require('@admin-bro/mongoose')
-const AdminBroExpress = require('@admin-bro/express')
+import AdminBro from 'admin-bro'
+import AdminBroMongoose from '@admin-bro/mongoose'
+import AdminBroExpress from '@admin-bro/express'
 
-const mongoose = require('mongoose')
-const express = require('express')
+import mongoose from 'mongoose'
+import express from 'express'
+
+import orderModel from './src/models/order.model.js'
+import userModel from './src/models/user.model.js'
+import adminModel from './src/models/admin.model.js'
+import cakeModel from './src/models/cake.model.js'
+import baseModel from './src/models/base.model.js'
+import config from './config.js'
+
 const app = express()
-
 app.use('/public', express.static('public'));
 AdminBro.registerAdapter(AdminBroMongoose)
-
-const orderModel = require ('./src/models/order.model.js')
-const userModel = require ('./src/models/user.model.js')
-const adminModel = require ('./src/models/admin.model.js')
-const cakeModel = require ('./src/models/cake.model.js')
-const baseModel = require ('./src/models/base.model.js')
-const config = require ('./config.json')
 
 mongoose.connect(config.mongoURI)
 const AdminBroOptions = {
