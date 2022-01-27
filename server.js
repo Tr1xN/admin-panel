@@ -10,6 +10,7 @@ import userModel from './src/models/user.model.js'
 import adminModel from './src/models/admin.model.js'
 import cakeModel from './src/models/cake.model.js'
 import baseModel from './src/models/base.model.js'
+import optionsModel from './src/models/options.model.js'
 import config from './config.js'
 
 const app = express()
@@ -74,7 +75,7 @@ const AdminBroOptions = {
             isVisible: { list: false, filter: false, show: false, edit: false },
           },
           category : {
-            availableValues: [{value: 'Святковий', label: 'Святковий'}, {value: 'Дитячий', label: 'Дитячий'}, {value: 'Весільний', label: 'Весільний'},]
+            availableValues: [{value: 'Святковий', label: 'Святковий'}, {value: 'Дитячий', label: 'Дитячий'}, {value: 'Весільний', label: 'Весільний'},{value: 'Ексклюзивний', label: 'Ексклюзивний'}]
           }
         }
       }
@@ -88,6 +89,19 @@ const AdminBroOptions = {
           },
           name: {
             isVisible: { list: true, filter: true, show: true, edit: true },
+          },
+        }
+      },
+    },
+    {
+      resource: optionsModel, options: {
+        listProperties: ['mail'],
+        properties :{
+          _id: {
+            isVisible: { list: false, filter: false, show: false, edit: false },
+          },
+          mail: {
+            isVisible: { list: true, filter: false, show: true, edit: true },
           },
         }
       },
