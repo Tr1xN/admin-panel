@@ -95,6 +95,11 @@ const AdminBroOptions = {
     },
     {
       resource: optionsModel, options: {
+        actions: {
+          new: {
+            isVisible: false,
+          },
+        },
         listProperties: ['mail'],
         properties :{
           _id: {
