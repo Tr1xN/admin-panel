@@ -2,11 +2,10 @@
   "name": "admin-panel",
   "version": "1.0.0",
   "description": "Admin panel for wowtort-telegram-bot",
-  "main": "server.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon start",
-    "start": "node main",
+    "start": "node server.js",
     "daemon": "pm2 start server.js",
     "update": "git pull; npm i"
   },

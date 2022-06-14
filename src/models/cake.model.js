@@ -12,9 +12,6 @@ const cakeSchema = new mongoose.Schema({
     },
     category:{
         type: String,
-    },
-    minWeight:{
-        type: Number,
     }
 })
 

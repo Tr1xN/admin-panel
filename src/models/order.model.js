@@ -9,20 +9,12 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    weight:{
-        type: Number,
-        required: true
-    },
     deliveryPoint:{
         type: String,
         required: true
     },
     date:{
         type: Date,
-        required: false
-    },
-    base:{
-        type: String,
         required: false
     },
     phoneNumber:{

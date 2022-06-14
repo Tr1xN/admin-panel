@@ -9,7 +9,6 @@ import orderModel from './src/models/order.model.js'
 import userModel from './src/models/user.model.js'
 import adminModel from './src/models/admin.model.js'
 import cakeModel from './src/models/cake.model.js'
-import baseModel from './src/models/base.model.js'
 import optionsModel from './src/models/options.model.js'
 import config from './config.js'
 
@@ -38,7 +37,7 @@ const AdminBroOptions = {
     },
     {
       resource: orderModel, options: {
-        listProperties: ['cake', 'price', 'weight', 'deliveryPoint', 'date', 'base', 'phoneNumber'],
+        listProperties: ['cake', 'price', 'deliveryPoint', 'date', 'phoneNumber'],
         properties :{
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
@@ -49,16 +48,10 @@ const AdminBroOptions = {
           price: {
             isVisible: { list: true, filter: true, show: true, edit: false },
           },
-          weight: {
-            isVisible: { list: true, filter: true, show: true, edit: false },
-          },
           deliveryPoint: {
             isVisible: { list: true, filter: true, show: true, edit: false },
           },
           date: {
-            isVisible: { list: true, filter: true, show: true, edit: false },
-          },
-          base: {
             isVisible: { list: true, filter: true, show: true, edit: false },
           },
           phoneNumber: {
@@ -69,29 +62,16 @@ const AdminBroOptions = {
     },
     {
       resource: cakeModel, options: {
-        listProperties: ['name', 'price', 'category', 'minWeight'],
+        listProperties: ['name', 'price', 'category'],
         properties :{
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
           },
           category : {
-            availableValues: [{value: 'Святковий', label: 'Святковий'}, {value: 'Дитячий', label: 'Дитячий'}, {value: 'Весільний', label: 'Весільний'},{value: 'Ексклюзивний', label: 'Ексклюзивний'}]
+            availableValues: [{value: 'Ексклюзивний', label: 'Ексклюзивний'}, {value: 'Вишуканий смак', label: 'Вишуканий смак'}]
           }
         }
       }
-    },
-    {
-      resource: baseModel, options: {
-        listProperties: ['name'],
-        properties :{
-          _id: {
-            isVisible: { list: false, filter: false, show: false, edit: false },
-          },
-          name: {
-            isVisible: { list: true, filter: true, show: true, edit: true },
-          },
-        }
-      },
     },
     {
       resource: optionsModel, options: {
