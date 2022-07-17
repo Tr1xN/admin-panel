@@ -1,8 +1,12 @@
 import mongoose from 'mongoose'
 
 const orderSchema = new mongoose.Schema({
-    cake:{
+    cart:{
         type: String,
+        required: true
+    },
+    cartArray:{
+        type: [String],
         required: true
     },
     price:{
@@ -14,7 +18,7 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
     date:{
-        type: Date,
+        type: String,
         required: false
     },
     phoneNumber:{

@@ -42,7 +42,10 @@ const AdminBroOptions = {
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
           },
-          cake: {
+          cart: {
+            isVisible: { list: false, filter: false, show: false, edit: false },
+          },
+          cartArray: {
             isVisible: { list: true, filter: true, show: true, edit: false },
           },
           price: {
@@ -111,11 +114,11 @@ const AdminBroOptions = {
       properties: {
         name: 'Назва',
         price: 'Ціна',
-        source: 'Посилання на зображення торту',
+        source: 'Посилання на зображення товару',
         category: 'Категорія',
         phoneNumber: 'Номер телефону',
         _id: 'ID',
-        cake: 'Торт',
+        cartArray: 'Кошик',
         weight: 'Вага',
         deliveryPoint: 'Точка вивезення',
         date: 'Дата',
