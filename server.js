@@ -71,7 +71,7 @@ const AdminBroOptions = {
             isVisible: { list: false, filter: false, show: false, edit: false },
           },
           category : {
-            availableValues: [{value: 'Ексклюзивний', label: 'Ексклюзивний'}, {value: 'Вишуканий смак', label: 'Вишуканий смак'}]
+            availableValues: [{value: 'Торти "Ексклюзив"', label: 'Торти "Ексклюзив"'}, {value: 'Тістечка', label: 'Тістечка'}, {value: 'Пряники', label: 'Пряники'}, {value: 'Печиво', label: 'Печиво'}]
           }
         }
       }
