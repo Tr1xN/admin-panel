@@ -65,7 +65,7 @@ const AdminBroOptions = {
     },
     {
       resource: cakeModel, options: {
-        listProperties: ['name', 'price', 'category'],
+        listProperties: ['name', 'description', 'price', 'category'],
         properties :{
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
@@ -113,6 +113,7 @@ const AdminBroOptions = {
       },
       properties: {
         name: 'Назва',
+        description: 'Опис',
         price: 'Ціна',
         source: 'Посилання на зображення товару',
         category: 'Категорія',
