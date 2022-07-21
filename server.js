@@ -65,13 +65,13 @@ const AdminBroOptions = {
     },
     {
       resource: cakeModel, options: {
-        listProperties: ['name', 'description', 'price', 'category'],
+        listProperties: ['name', 'description', 'price', 'weight', 'expiration', 'category'],
         properties :{
           _id: {
             isVisible: { list: false, filter: false, show: false, edit: false },
           },
           category : {
-            availableValues: [{value: 'Торти "Ексклюзив"', label: 'Торти "Ексклюзив"'}, {value: 'Тістечка', label: 'Тістечка'}, {value: 'Пряники', label: 'Пряники'}, {value: 'Печиво', label: 'Печиво'}]
+            availableValues: [{value: 'WOW торти', label: 'WOW торти'}, {value: 'Патріотичні цукерки', label: 'Патріотичні цукерки'}, {value: 'Пряники', label: 'Пряники'}, {value: 'Печиво ТМ Любчик', label: 'Печиво ТМ Любчик'}]
           }
         }
       }
@@ -126,7 +126,8 @@ const AdminBroOptions = {
         base: 'Основа',
         firstName: 'Ім’я',
         phoneNumber: 'Номер користувача',
-        minWeight: 'Мінімальна вага'
+        minWeight: 'Мінімальна вага',
+        expiration: 'Термін придатності'
       },
     }
   },
@@ -151,4 +152,4 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 })
 
 app.use(adminBro.options.rootPath, router)
-app.listen(config.port, () => console.log('AdminBro is under localhost:8080/admin'))
+app.listen(config.port, () => console.log('AdminBro is under http://localhost:8080/admin'))
